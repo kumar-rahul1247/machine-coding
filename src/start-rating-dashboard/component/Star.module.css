@@ -1,0 +1,58 @@
+.full-star {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--star-color);
+}
+
+.half-star:hover,
+.full-star:hover{
+    scale: 1.2;
+    transition: all 0.2s ease-in-out;
+}
+
+.half-star {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--star-color);
+    position: relative;
+    /* overflow: hidden; */
+    z-index: 1;
+}
+
+
+.half-star::before {
+  content: '★';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  color: var(--star-half-color);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.left-half,
+.right-half {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.left-half {
+  left: 0;
+}
+
+.right-half {
+  right: 0;
+}
