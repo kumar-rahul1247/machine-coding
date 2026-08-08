@@ -30,9 +30,6 @@ const Star: React.FC<StarProps> = ({ value, starState, enableHalfStar, onClick, 
         className={styles['half-star']}
         onMouseLeave={onHoverLeave}
         style={styleFullStar}
-        role="button"
-        aria-label={`Rate ${value} star${value !== 1 ? 's' : ''}`}
-        tabIndex={-1}
       >
         <span
           className={styles['left-half']}

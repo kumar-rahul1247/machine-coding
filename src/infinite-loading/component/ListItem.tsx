@@ -11,7 +11,8 @@ interface ListItemProps {
 
 const ListItem = ({ items, goNextPage, loading }: ListItemProps) => {
     const observer = useRef<IntersectionObserver | null>(null);
-    const listRef = useRef<HTMLDivElement | null>(null);
+    const listRef = useRef<HTMLUListElement | null>(null);
+    
 
     // Native Scroll Techique
     // const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
@@ -21,7 +22,7 @@ const ListItem = ({ items, goNextPage, loading }: ListItemProps) => {
     //     }
     // };
 
-    const lastElementRef = useCallback((node: HTMLDivElement | null) => {
+    const lastElementRef = useCallback((node: HTMLLIElement | null) => {
         if (loading) return;
 
         if (observer.current) {
@@ -55,18 +56,19 @@ const ListItem = ({ items, goNextPage, loading }: ListItemProps) => {
     }, []);
 
     return (
-        <div ref={listRef} className={style['list-item']}>
+        <ul ref={listRef} className={style['list-item']} role="list" aria-label="All Items List">
             {
                 items.map((item, index) => (
                     <Item
                         key={index}
                         item={item}
-                        ref={index == items.length-1 ? lastElementRef : null} />
+                        ref={index == items.length-1 ? lastElementRef : null} 
+                        />
                 ))
             }
 
-            {loading && <p>Loading more items...</p>}
-        </div>
+            {loading && <li>Loading more items...</li>}
+        </ul>
     );
 };
 

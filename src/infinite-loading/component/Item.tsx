@@ -3,7 +3,7 @@ import style from './Item.module.css';
 
 interface ItemProps {
     item: string;
-    ref?: React.Ref<HTMLDivElement>;
+    ref?: React.Ref<HTMLLIElement>;
 }
 
 // Before React 19 forward Ref Implementation
@@ -19,9 +19,9 @@ interface ItemProps {
 
 const Item = ({ item, ref}: ItemProps ) => {
     return (
-        <div ref={ref} className={style['item-container']}>
+        <li ref={ref} className={style['item-container']} role="listitem">
             {item}
-        </div>
+        </li>
     );
 }
 
