@@ -8,7 +8,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className={style['dashboard-container']}>
       <div className={style['dashboard-card']}>
-        <h1>Star Rating Functionality</h1>
+        <h1>Star Rating</h1>
         <div> ★  ★  ★  ★  ★</div>
         <button
           className={style['dashboard-button']}
@@ -18,9 +18,11 @@ const Dashboard: React.FC = () => {
       </div>
 
       <div className={style['dashboard-card']}>
-        <h1>Star Rating Functionality</h1>
+        <h1>Infinite Loading</h1>
         <div> ★  ★  ★  ★  ★</div>
-        <button className={style['dashboard-button']}>Go to Star Rating</button>
+        <button className={style['dashboard-button']} onClick={() => navigate('/infinite-loading')}>
+          Go to Infinite Loading
+        </button>
       </div>
 
       {/* <div className={style['dashboard-card']}>
