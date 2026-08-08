@@ -21,6 +21,7 @@ const StarRating = ({
         handleStarClick,
         handleStarHover,
         handleStarHoverLeave,
+        handleKeyPress,
     } = useStarRating({ currentRating, setCurrentRating });
 
     return (
@@ -36,6 +37,7 @@ const StarRating = ({
                         onClick={handleStarClick}
                         onHover={handleStarHover}
                         onHoverLeave={handleStarHoverLeave}
+                        handleKeyPress={handleKeyPress}
                     />
                 );
             })}

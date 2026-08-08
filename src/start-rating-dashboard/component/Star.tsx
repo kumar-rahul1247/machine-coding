@@ -8,9 +8,10 @@ interface StarProps {
   onClick: (value: number) => void;
   onHover: (value: number) => void;
   onHoverLeave: () => void;
+  handleKeyPress: (e: React.KeyboardEvent, value: number) => void;
 }
 
-const Star: React.FC<StarProps> = ({ value, starState, enableHalfStar, onClick, onHover, onHoverLeave }) => {
+const Star: React.FC<StarProps> = ({ value, starState, enableHalfStar, onClick, onHover, onHoverLeave, handleKeyPress }) => {
 
   // starState - 3.5
   // value - 4
@@ -29,17 +30,29 @@ const Star: React.FC<StarProps> = ({ value, starState, enableHalfStar, onClick, 
         className={styles['half-star']}
         onMouseLeave={onHoverLeave}
         style={styleFullStar}
+        role="button"
+        aria-label={`Rate ${value} star${value !== 1 ? 's' : ''}`}
+        tabIndex={-1}
       >
         <span
           className={styles['left-half']}
           onClick={() => onClick(value - 0.5)}
           onMouseEnter={() => onHover(value - 0.5)}
+          onKeyDown={(e)=>handleKeyPress(e, value - 0.5)}
+          role="button"
+          tabIndex={0}
+          aria-label={`Rate ${value - 0.5} star`}
+          aria-pressed={isHalfStar || isFullStar}
         />
         <span
           className={styles['right-half']}
           onClick={() => onClick(value)}
           onMouseEnter={() => onHover(value)}
-          // style={styleFullStar}
+          onKeyDown={(e)=>handleKeyPress(e, value)}
+          role="button"
+          tabIndex={0}
+          aria-label={`Rate ${value} star`}
+          aria-pressed={isFullStar}
         />
         ★
       </span>
@@ -53,7 +66,12 @@ const Star: React.FC<StarProps> = ({ value, starState, enableHalfStar, onClick, 
       onClick={() => onClick(value)}
       onMouseEnter={() => onHover(value)}
       onMouseLeave={onHoverLeave}
+      onKeyDown={(e)=>handleKeyPress(e, value)}
       style={styleFullStar}
+      role="button"
+      tabIndex={0}
+      aria-label={`Rate ${value} star`}
+      aria-pressed={isFullStar}
     >
       ★
     </span>
